@@ -10,7 +10,6 @@ object MatrixExp {
       Array(Math.PI, 0)
     )
     val result: Array[Array[Double]] = Array(Array(0, 0), Array(0, 0))
-    // Iterate from 0 to 100
     for (i <- 0 to 100) {
       println("Iteration " + i)
       val nextTerm = pow(matrix, i)
