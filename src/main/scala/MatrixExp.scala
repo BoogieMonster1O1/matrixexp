@@ -1,12 +1,23 @@
 package io.github.boogiemonster1o1.matrixexp
 
-object Main {
+/**
+ * Raises e to the power of a matrix
+ */
+object MatrixExp {
   def main(args: Array[String]): Unit = {
     val matrix: Array[Array[Double]] = Array(
       Array(0, -Math.PI),
       Array(Math.PI, 0)
     )
     val result: Array[Array[Double]] = Array(Array(0, 0), Array(0, 0))
+    // Iterate from 0 to 100
+    for (i <- 0 to 100) {
+      println("Iteration " + i)
+      val nextTerm = pow(matrix, i)
+      divideInPlace(nextTerm, factorial(i))
+      addInPlace(result, nextTerm)
+    }
+    println(result.map(row => row.mkString("[", ", ", "]")).mkString("\n"))
   }
 
   def addInPlace(a: Array[Array[Double]], b: Array[Array[Double]]): Array[Array[Double]] = {
@@ -48,6 +59,15 @@ object Main {
       }
       result
     }
+  }
+
+  def divideInPlace(matrix: Array[Array[Double]], divisor: Double): Array[Array[Double]] = {
+    for (i <- matrix.indices) {
+      for (j <- matrix(i).indices) {
+        matrix(i)(j) /= divisor
+      }
+    }
+    matrix
   }
 
   def identity(size: Int): Array[Array[Double]] = {
